@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShareFiles</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+    }
+
+    nav li {
+      flex-grow: 1;
+    }
+
+    nav a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    div {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'upload_file' %}">Upload File</a></li>
+      <li><a href="{% url 'share_file' %}">Share File</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'signup' %}">Sign up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <div>
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+
+

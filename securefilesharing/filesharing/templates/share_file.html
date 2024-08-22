@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Share File</h2>
+  <form method="post" action="{% url 'share_file' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Share</button>
+  </form>
+{% endblock %}
+
+

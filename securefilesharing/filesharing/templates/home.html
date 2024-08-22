@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ userprofile.user.username }}!</h2>
+
+  <!-- Display uploaded files -->
+  <h3>Your Uploaded Files:</h3>
+  <ul>
+    {% for file in uploadedfiles %}
+      <li>
+        {{ file.file_name }}
+        (<a href="{% url 'download_file' file.id %}">Download</a>)
+        (<a href="{% url 'delete_file' file.id %}">Remove</a>)
+      </li>
+    {% endfor %}
+  </ul>
+
+<!-- Display shared files -->
+<h3>Files Shared with You:</h3>
+<ul>
+  {% for shared_file in sharedfiles %}
+    <li>
+      {{ shared_file.shared.file_name }}
+      by {{ shared_file.from_user.username }}
+      (<a href="{% url 'download_shared_file' shared_file.id %}">Download</a>)
+    </li>
+  {% endfor %}
+</ul>
+
+
+{% endblock %}
+
